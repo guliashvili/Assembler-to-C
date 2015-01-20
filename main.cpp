@@ -186,6 +186,34 @@ string branch(string a,int L){
 
 
 }
+
+string setTo(string a){
+    if(a[0]=='R' && a.find_first_of('.')==-1 && a.find_first_of('M')==-1) return a+";\n";
+    int X=4;
+
+    if(a.find_first_of('.')!=-1){
+        vector<string> vv=splitAndParse(a,". ",1);
+        X = atoi(vv[2].c_str());
+        vv.erase(vv.begin()+1);vv.erase(vv.begin()+1);vv.erase(vv.begin()+1);
+
+        a=merge(vv);
+    }
+
+    string A,B;
+
+    vector<string> vv=splitAndParse(a,"=");
+    A=vv[0];B=vv[1];
+    string ret;
+    if(isConstant(B)){
+        ret="Rbuffer = "+vv[1]+";\n"'
+        B="Rbuffer";
+    }
+
+
+
+}
+
+
 //M[bla]=...
 string write(string a){
     int X=4;
