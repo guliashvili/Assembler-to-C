@@ -232,6 +232,8 @@ string setTo(string a){
 
 //M[bla]=...
 string write(string a){
+    return setTo(a);
+    /*
     int X=4;
     if(a.find_first_of('.')!=-1){
         vector<string> vv=splitAndParse(a,". ");
@@ -252,11 +254,13 @@ string write(string a){
         return ret;
 
     }
-
+*/
 }
 
 //R=...
 string load(string a){
+    return setTo(a);
+    /*
     if(a.find_first_of('.')!=-1){
 
         vector<string> vv=splitAndParse(a,". ",1);
@@ -278,6 +282,7 @@ string load(string a){
         string ret= "memcpy(&"+vv[0]+" , &"+vv[1]+"-3, 4 );\n";
         return ret;
     }
+    */
 
 
 }
@@ -399,7 +404,7 @@ string getHeaderFunctions(const vector<vector<string> > &functions){
 string getVariables(const vector<string> &lines){
     string ret;
     ret+="unsigned char M["+MSZ()+"];\n";
-    ret+="int SP="+toString(atoi(MSZ().c_str())-1)+",RV,buffer;\n";
+    ret+="int SP="+toString(atoi(MSZ().c_str())-1)+",RV,Rbuffer;\n";
     ret+=listRegisters(lines)+"\n\n\n\n";
 
     return ret;
