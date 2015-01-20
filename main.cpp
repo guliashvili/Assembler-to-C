@@ -205,12 +205,28 @@ string setTo(string a){
     A=vv[0];B=vv[1];
     string ret;
     if(isConstant(B)){
-        ret="Rbuffer = "+vv[1]+";\n"'
+        ret+="Rbuffer = "+vv[1]+";\n";
         B="Rbuffer";
     }
+    if(isRegister(A)){
+        ret+=A+"=0;\n";
+    }
 
+    if(A[0]=='M'){ //M[bla] = .X R
 
+        ret += "memcpy(&" +  A+ " -"+toString(X-1)+", &" + B+", " +toString(X)+ ");\n";
 
+    }else if(B[0]=='M'){ //R = .X M[bla]
+
+        ret += "memcpy(&"+A+" , &"+B+"-"+toString(X-1)+", " + toString(X)+" );\n";
+
+    }else if(isRegister(A)){ // R = .X R
+
+        ret += "memcpy(&" +  A+ ", &" + B+", " +toString(X)+ ");\n";
+
+    }
+
+    return ret;
 }
 
 
