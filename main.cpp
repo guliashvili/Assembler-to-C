@@ -230,62 +230,6 @@ string setTo(string a){
 }
 
 
-//M[bla]=...
-string write(string a){
-    return setTo(a);
-    /*
-    int X=4;
-    if(a.find_first_of('.')!=-1){
-        vector<string> vv=splitAndParse(a,". ");
-        X=atoi(vv[1].c_str());
-        vv.erase(vv.begin()+1);
-        a=merge(vv);
-    }
-    vector<string> vv=splitAndParse(a,"=");
-    if(isConstant(vv[1])){
-        string ret="buffer = "+vv[1]+";\n";
-        assert(vv.size()==2);
-        vv[1]="buffer";
-
-        ret+=write(merge(vv,'='));
-        return ret;
-    }else{
-        string ret="memcpy(&" +  vv[0]+ " -3, &" + vv[1]+", "+toString(X)+ ");\n";
-        return ret;
-
-    }
-*/
-}
-
-//R=...
-string load(string a){
-    return setTo(a);
-    /*
-    if(a.find_first_of('.')!=-1){
-
-        vector<string> vv=splitAndParse(a,". ",1);
-        int X = atoi(vv[2].c_str());
-        vv.erase(vv.begin()+1);vv.erase(vv.begin()+1);vv.erase(vv.begin()+1);
-
-        a=merge(vv);
-
-        string ret=load(a);
-        vv[0]=vv[0].substr(0,vv[0].size()-1);
-        if(X<4)
-            ret+=vv[0] + " = " + "((1<<"+toString(8*X)+")-1) & " + vv[0]+";";
-
-        return ret;
-    }else if(a.find_first_of('M')==-1){
-        return a+";\n";
-    }else{
-        vector<string> vv = splitAndParse(a,"=");
-        string ret= "memcpy(&"+vv[0]+" , &"+vv[1]+"-3, 4 );\n";
-        return ret;
-    }
-    */
-
-
-}
 /* returns true if line is jump line */
 bool isJump(const string &a){
     return a.substr(0,3)=="JMP";
@@ -315,8 +259,8 @@ string translate(string a,int L){
 
     if(isJump(a)) return JMP(a,L);
     if(isBranch(a)) return branch(a,L);
-    if(isWrite(a)) return write(a);
-    if(isLoad(a)) return load(a);
+    if(isWrite(a) || isLoad(a)) return setTo(a);
+
     cout<<"wtf is it master gio? "<<a<<endl;
     exit(-1);
 }

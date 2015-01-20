@@ -1,0 +1,42 @@
+
+
+~main~;
+M[SP]=4;
+CALL<fact>;
+CALL<bla1>;
+CALL<bla2>;
+CALL<bla3>;
+RET;
+
+~bla1~; // R = .2 R
+R1 = 3;
+R2 = .2 R1; 
+RV = R2 ;
+RET;
+
+~bla2~; // R = .2 M[SP]
+M[SP]=65537;
+R1 = .2 M[SP];
+RV = R1;
+RET;
+
+~bla3~; // M[bla] = .2 M[bla]
+M[SP]=65537;
+M[SP-4]=.2 M[SP];
+RV = .2 M[SP];
+RET;
+
+~fact~;
+R1= M[SP+4];
+BNE R1, 0, PC+12;
+RV=1 ;
+RET;
+R1 = M[SP+4];
+R1= R1-1;
+SP = SP-4;
+M[ SP]=R1;
+CALL <fact>;
+SP = SP+4;
+R1= M[SP+4];
+RV = RV*R1;
+RET;
