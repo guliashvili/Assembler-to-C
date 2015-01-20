@@ -1,0 +1,37 @@
+﻿
+
+ყვველა ხაზი რამე ფუნქციას უნდა ეკუთვნოდეს.
+ფუნქცია აღინიშნება ასე
+
+~funqciissaxeli~;
+
+და მთავრდება
+
+RET;
+
+
+რეგისტერების სახელი იწყება R ით და შემდეგ მთელი არაუარყოფითი, ფუნქციის ან სხვა რამის აღნიშვნა იგივე ფორმატში არ შეიძლება.
+
+ცვლადები არსებობენ
+SP 
+RV
+და მასივისავით M[]
+ზოგადად რეგიტრს აღვნიშნავთ R ით 
+ზოგადად კონსტანტას აღვნიშნავთ C ით
+მინიჭებები შეიძლება შემდეგნაირი
+
+rame = (((R or SP or RV or C) (+ or - or * or /) (R or SP or RV or C)) or (R or SP or RV or C) )
+/* loads */
+(R or SP or RV) = (R or SP or RV or C) (+ or - or * or /) (R or SP or RV or C) 
+(R or SP or RV) = .x (R or SP or RV or C or M[rame]) (x 1 დან 4 ამდე მთელია)
+(R or SP or RV) = (R or SP or RV or C or M[rame])
+
+/* loads */
+
+/* sets */
+M[rame] = (R or SP or RV or C)
+M[rame] = .x (R or SP or RV or C) (x 1 დან 4 ამდე მთელია)
+/* sets */
+
+
+
