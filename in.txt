@@ -20,10 +20,10 @@ R1 = .2 M[SP];
 RV = R1;
 RET;
 
-~bla3~; // M[bla] = .2 M[bla]
-M[SP]=65537;
-M[SP-4]=.2 M[SP];
-RV = .2 M[SP];
+~bla3~; // M[bla] = .2 R
+R1=65537;
+M[SP-4]=.2 R1;
+RV = .2 M[SP-4];
 RET;
 
 ~fact~;
