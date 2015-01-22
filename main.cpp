@@ -63,8 +63,8 @@ string MSZ(){
 }
 
 
-#define DEVELOP
-#define addPrintf
+#define DEVELOP  // input file will be in.txt and out file will be out.txt
+#define addPrintf // before RET adds code to print RV
 
 /* removes comments from assembly code  and returns code without comments */
 string removeComment(const string &a){
